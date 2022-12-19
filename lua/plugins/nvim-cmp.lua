@@ -22,7 +22,10 @@ require("luasnip/loaders/from_vscode").lazy_load()
 vim.opt.completeopt = "menu,menuone,noselect"
 
 cmp.setup({
-  snippet = {
+    completion = {
+    autocomplete = false
+  },
+    snippet = {
     expand = function(args)
       luasnip.lsp_expand(args.body)
     end,
@@ -36,6 +39,7 @@ cmp.setup({
     ["<C-e>"] = cmp.mapping.abort(), -- close completion window
     ["<CR>"] = cmp.mapping.confirm({ select = false }),
   }),
+  
   -- sources for autocompletion
   sources = cmp.config.sources({
     { name = "nvim_lsp" }, -- lsp
@@ -51,5 +55,3 @@ cmp.setup({
     }),
   },
 })
-
-
